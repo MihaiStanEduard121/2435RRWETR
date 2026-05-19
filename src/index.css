@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Poppins:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Nunito", "Poppins", ui-sans-serif, system-ui, sans-serif;
+  
+  --color-cute-pink: #FFD1DC;
+  --color-cute-pink-dark: #FFB7C5;
+  --color-cute-blue: #B4E4FF;
+  --color-cute-blue-dark: #87C4FF;
+  --color-cute-lila: #D0BFFF;
+  --color-cute-lila-dark: #BEADFA;
+  --color-cute-yellow: #FFF4BD;
+  --color-cute-mint: #C1F0C1;
+}
+
+@layer base {
+  body {
+    @apply bg-[#FFF9FB] text-gray-800 font-sans;
+  }
+}
+
+.bubble-shadow {
+  box-shadow: 0 10px 25px -5px rgba(255, 209, 220, 0.4);
+}
+
+.kawaii-bounce {
+  animation: kawaii-bounce 2s infinite;
+}
+
+@keyframes kawaii-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}

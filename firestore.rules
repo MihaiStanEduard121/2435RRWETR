@@ -1,0 +1,43 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // 1. Master Deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Helpers
+    function isValidId(id) {
+      return id is string && id.size() >= 4 && id.size() <= 20 && id.matches('^[a-zA-Z0-9_-]+$');
+    }
+
+    function isValidUrl(url) {
+      return url is string && url.size() <= 2048 && url.matches('^https?://.*');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function isValidQRMapping(data) {
+      return data.keys().hasAll(['id', 'destinationUrl', 'createdAt']) 
+             && data.keys().size() == 3
+             && isValidId(data.id)
+             && isValidUrl(data.destinationUrl)
+             && data.createdAt == request.time;
+    }
+
+    // 2. Collections
+    match /qr_mappings/{qrId} {
+      // Anyone can see a redirect mapping if they have the ID
+      allow get: if true;
+      
+      // Anyone can create a mapping
+      allow create: if isValidQRMapping(incoming()) && incoming().id == qrId;
+      
+      // Immortality: No updates or deletes
+      allow update, delete: if false;
+    }
+  }
+}

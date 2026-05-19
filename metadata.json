@@ -1,0 +1,6 @@
+{
+  "name": "CuteQR Generator",
+  "description": "A kawaii-style aesthetic QR code generator with built-in redirect system and pastel themes.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

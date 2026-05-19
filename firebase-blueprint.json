@@ -1,0 +1,22 @@
+{
+  "entities": {
+    "QRMapping": {
+      "title": "QR Mapping",
+      "description": "Maps a unique short ID to a destination URL.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique short ID" },
+        "destinationUrl": { "type": "string", "description": "The target URL" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "style": { "type": "object", "description": "Optional styling info" }
+      },
+      "required": ["id", "destinationUrl", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/qr_mappings/{qrId}": {
+      "schema": "QRMapping",
+      "description": "Collection of QR code redirect mappings."
+    }
+  }
+}

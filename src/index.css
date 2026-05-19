@@ -1,34 +1,118 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Poppins:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Nunito:wght@400;600;700;800&family=Poppins:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Nunito", "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Quicksand", "Nunito", "Poppins", ui-sans-serif, system-ui, sans-serif;
   
   --color-cute-pink: #FFD1DC;
   --color-cute-pink-dark: #FFB7C5;
+  --color-cute-pink-light: #FFF0F3;
   --color-cute-blue: #B4E4FF;
   --color-cute-blue-dark: #87C4FF;
   --color-cute-lila: #D0BFFF;
   --color-cute-lila-dark: #BEADFA;
   --color-cute-yellow: #FFF4BD;
   --color-cute-mint: #C1F0C1;
+  --color-cute-peach: #FFDAB9;
 }
 
 @layer base {
   body {
-    @apply bg-[#FFF9FB] text-gray-800 font-sans;
+    @apply bg-[#FFF9FB] text-gray-800 font-sans cursor-default;
+    /* Custom cursor heart (CSS emoji as cursor) */
+    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'  width='40' height='48' viewport='0 0 100 100' style='fill:black;font-size:24px;'><text y='50%'>💖</text></svg>") 16 0, auto;
   }
 }
 
+.glass-card {
+  @apply bg-white/70 backdrop-blur-md border-4 border-white rounded-[40px] shadow-xl;
+}
+
 .bubble-shadow {
-  box-shadow: 0 10px 25px -5px rgba(255, 209, 220, 0.4);
+  box-shadow: 0 10px 40px -10px rgba(255, 209, 220, 0.6);
 }
 
 .kawaii-bounce {
-  animation: kawaii-bounce 2s infinite;
+  animation: kawaii-bounce 3s ease-in-out infinite;
 }
 
 @keyframes kawaii-bounce {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-5px); }
+  50% { transform: translateY(-10px); }
+}
+
+.floating-heart {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px) rotate(0deg); opacity: 0; }
+  20% { opacity: 0.8; }
+  80% { opacity: 0.8; }
+  100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+}
+
+.sparkle-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.sparkle-shine::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to bottom right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.1) 40%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0.1) 60%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: rotate(45deg);
+  animation: shine 3s infinite;
+}
+
+@keyframes shine {
+  0% { transform: translateX(-100%) rotate(45deg); }
+  100% { transform: translateX(100%) rotate(45deg); }
+}
+
+.pastel-bg-anim {
+  background: linear-gradient(-45deg, #FFD1DC, #B4E4FF, #D0BFFF, #FFF4BD);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+.shake-anim {
+  animation: shake 0.4s ease-in-out;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--color-cute-pink);
+  border-radius: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--color-cute-pink-dark);
 }

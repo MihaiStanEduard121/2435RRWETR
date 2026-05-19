@@ -8,7 +8,21 @@
         "id": { "type": "string", "description": "Unique short ID" },
         "destinationUrl": { "type": "string", "description": "The target URL" },
         "createdAt": { "type": "string", "format": "date-time" },
-        "style": { "type": "object", "description": "Optional styling info" }
+        "qrStyle": { 
+          "type": "object", 
+          "properties": {
+            "fgColor": { "type": "string" },
+            "bgColor": { "type": "string" }
+          }
+        },
+        "pageConfig": {
+          "type": "object",
+          "properties": {
+            "title": { "type": "string" },
+            "message": { "type": "string" },
+            "theme": { "type": "string" }
+          }
+        }
       },
       "required": ["id", "destinationUrl", "createdAt"]
     }

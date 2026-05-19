@@ -22,7 +22,7 @@ service cloud.firestore {
 
     function isValidQRMapping(data) {
       return data.keys().hasAll(['id', 'destinationUrl', 'createdAt']) 
-             && data.keys().size() == 3
+             && (data.keys().hasOnly(['id', 'destinationUrl', 'createdAt', 'qrStyle', 'pageConfig']))
              && isValidId(data.id)
              && isValidUrl(data.destinationUrl)
              && data.createdAt == request.time;
